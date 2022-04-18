@@ -5,38 +5,41 @@ import org.junit.Test;
 
 public class MatrixCheckTest {
     @Test
-    public void whenDiagonalFullX() {
+    public void whenDataMonoByTrueThenTrue() {
         char[][] input = {
-                {'X', ' ', ' '},
-                {' ', 'X', ' '},
-                {' ', ' ', 'X'},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
         };
-        char[] result = MatrixCheck.extractDiagonal(input);
-        char[] expected = {'X', 'X', 'X'};
-        Assert.assertArrayEquals(expected, result);
+        boolean result = MatrixCheck.isWin(input);
+        Assert.assertTrue(result);
     }
 
     @Test
-    public void whenDiagonalFullOne() {
+    public void whenDataNotMonoByTrueThenFalse() {
         char[][] input = {
-                {'1', ' ', ' '},
-                {' ', '1', ' '},
-                {' ', ' ', '1'},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', 'X', ' ', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
         };
-        char[] result = MatrixCheck.extractDiagonal(input);
-        char[] expected = {'1', '1', '1'};
-        Assert.assertArrayEquals(expected, result);
+        boolean result = MatrixCheck.isWin(input);
+        Assert.assertFalse(result);
     }
 
     @Test
-    public void whenDiagonalMix() {
+    public void whenDataHMonoByTrueThenTrue() {
         char[][] input = {
-                {'X', ' ', ' '},
-                {' ', 'Y', ' '},
-                {' ', ' ', 'Z'},
+                {' ', ' ', ' ', ' ', ' '},
+                {' ', ' ', ' ', ' ', ' '},
+                {'X', 'X', 'X', 'X', 'X'},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
         };
-        char[] result = MatrixCheck.extractDiagonal(input);
-        char[] expected = {'X', 'Y', 'Z'};
-        Assert.assertArrayEquals(expected, result);
+        boolean result = MatrixCheck.isWin(input);
+        Assert.assertTrue(result);
     }
 }
